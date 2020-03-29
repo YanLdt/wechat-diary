@@ -1,0 +1,13 @@
+/* miniprogram/pages/diary/diary.wxss */
+
+.card-demo image {
+  border-radius: 50%;
+}
+
+
+.content{
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    white-space:nowrap; 
+}
+

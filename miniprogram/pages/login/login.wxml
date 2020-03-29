@@ -1,0 +1,12 @@
+<!--miniprogram/pages/login/login.wxml-->
+<view class="container">
+  <!-- 头像和名字 -->
+  <image class="avatar" src="../../images/zy.jpg"></image>
+  <text style="font-size:32rpx;color:rgb(51,51,51);margin-top:28rpx;">our days</text>
+
+  <!-- 标语 -->
+  <text class="motto">lyzzy的小世界</text>
+
+  <button class="joinBtn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">进入</button>
+</view>
+

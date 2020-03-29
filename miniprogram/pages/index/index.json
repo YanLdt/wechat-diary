@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "calendar": "plugin://calendar/calendar"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "日记"
+  }
+  
+}

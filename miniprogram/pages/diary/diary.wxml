@@ -1,0 +1,15 @@
+<!--miniprogram/pages/diary/diary.wxml-->
+<!-- <text>miniprogram/pages/diary/diary.wxml</text> -->
+
+<view class="page">
+
+<block wx:for="{{diaries}}">
+<view style="margin: 16px"></view>
+<navigator url="../diaryPage/diaryPage?diaryid={{item[0].id}}">
+    <i-card full title="{{newDiary}}" thumb="{{item[0].userPicUrl}}" i-class="card-demo">
+      <view slot="content" class="content">{{item[0].content}}</view>
+      <view slot="footer">{{item[0].editTime}}</view>
+    </i-card>
+</navigator>   
+</block>
+</view>

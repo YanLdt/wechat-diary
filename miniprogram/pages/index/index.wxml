@@ -1,0 +1,32 @@
+<!--index.wxml-->
+  <!-- <calendar calendar-style="calendar"  header-style="calendar-header"  board-style="calendar-board"
+ days-color="{{dayStyle}}" weeks-type="full-en" binddayClick="dayClick" lunar="true" 
+    /> -->
+
+<view class="container" bindtouchstart="diaryCount" type='primary'>
+
+
+<view class="date" >
+    <text class="text">我们已相爱
+    <text class="dayCount">{{day}}</text><text>天</text>
+      </text>
+    
+</view>
+
+<modal title="{{title}}" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCancel">
+    <!-- <view>
+      <image class="image" src="../images/image.jpg" mode='aspectFill'></image>
+    </view> -->
+    <view class="diaryCount">{{diaryCount}}</view>
+  </modal>
+
+
+<!-- <button class="themeBtn" bindtap="towriteDiary">编辑日记</button> -->
+
+
+
+</view>
+
+<view bindtap="towriteDiary" hidden="{{hidden}}">
+    <image class="themeBtn" src="../../images/edit.png"></image>
+</view>

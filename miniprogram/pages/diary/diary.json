@@ -1,0 +1,6 @@
+{
+
+  "usingComponents": {
+    "i-card":"../../iview/dist/card/index"
+  }
+}
