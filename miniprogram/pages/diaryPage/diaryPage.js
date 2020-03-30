@@ -1,3 +1,7 @@
+var util = require('../../utils/util.js');
+const app = getApp()
+
+
 Page({
   data: {
     formats: {},
@@ -42,12 +46,14 @@ Page({
     const db = wx.cloud.database()
     db.collection("diary").doc(this.data.id).get({
       success:function(res){
-        console.log(res.data.content.ops)
+        // console.log(res.data.content.ops)
         that.editorCtx.setContents({
           delta: res.data.content.ops
         })}
     })
   },
+
+  
   updatePosition(keyboardHeight) {
     const toolbarHeight = 50
     const { windowHeight, platform } = wx.getSystemInfoSync()
@@ -105,23 +111,83 @@ Page({
       text: formatDate
     })
   },
+
   insertImage() {
     const that = this
     wx.chooseImage({
       count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
       success: function (res) {
-        that.editorCtx.insertImage({
-          src: res.tempFilePaths[0],
-          data: {
-            id: 'abcd',
-            role: 'god'
-          },
-          width: '80%',
-          success: function () {
-            console.log('insert image success')
+
+        // wx.showLoading({
+        //   title: '上传中',
+        // })
+
+        const filePath = res.tempFilePaths[0]
+        const cloudPath = 'diaryPicture/' + util.wxuuid() + filePath.match(/\.[^.]+?$/)[0]
+        console.log(cloudPath)
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath,
+          name: 'test',
+          success: function (res) {
+            console.log("上传成功", res.fileID)
+            // that.setData({
+            //   pic:res.data[0]
+            // })
+            // pic = JSON.stringify(res)
+            // console.log(pic)
+            that.editorCtx.insertImage({
+              src: res.fileID,
+              success: function () {
+                console.log('insert image success')
+              }
+            })
           }
+        })
+
+        // that.editorCtx.insertImage({
+        //   // src: pic.fileID,
+        //   data: {
+        //     id: 'abcd',
+        //     role: 'god'
+        //   },
+        //   width: '80%',
+        //   success: function () {
+        //     console.log('insert image success')
+        //   }
+        // })
+
+
+      }
+    })
+  },
+
+  upload() {
+    var that = this;
+    const db = wx.cloud.database()
+    that.editorCtx.getContents({
+      success: function (res) {
+        var content = {
+          time: util.formatTime(new Date()),
+          html: res.html,
+          text: res.text,
+          delta: res.delta
+        }
+        console.log(content)
+
+        console.log(11111111111111)
+        db.collection("diary").doc(that.data.id).update({
+          data: {
+            editTime: content.time,
+            content: content.delta
+          }
+        })
+        wx.switchTab({
+          url: '/pages/index/index',
         })
       }
     })
-  }
+  },
 })

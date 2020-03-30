@@ -172,7 +172,7 @@ Page({
     })
   },
 
-  upload(){
+  upload() {
     // console.log(res)
     wx.vibrateShort();
     var that = this
@@ -202,7 +202,7 @@ Page({
             let myuser = db.collection("user").where({
               _openid: that.data.openid
             }).get()
-            console.log(that.data.openid,"openoidddddddddddddddddd")
+            // console.log(that.data.openid,"openoidddddddddddddddddd")
 
             //更新用户记录里的diaryArr
             var update = Promise.resolve(myuser).then(function(res){
