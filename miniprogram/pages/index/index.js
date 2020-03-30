@@ -29,6 +29,18 @@ Page({
   },
 
   diaryCount: function(){
+    const db = wx.cloud.database()
+    var diaryCount = 0;
+    db.collection('diary').count().then(res => {
+      console.log(res.total)
+      // diaryCount = res.total;
+      var total = "写了" + (res.total + 992) + "篇日记";
+      this.setData({
+        diaryCount: total
+      })
+
+    })
+    
     wx.vibrateShort();
     this.setData({
       modalHidden: false
@@ -64,17 +76,7 @@ Page({
       return
     }
 
-    const db = wx.cloud.database()
-    var diaryCount = 0;
-    db.collection('diary').count().then(res => {
-      console.log(res.total)
-      // diaryCount = res.total;
-      var total = "写了" + (res.total + 992) + "篇日记";
-      this.setData({
-        diaryCount: total
-      })
-
-    })
+    
     // console.log(diaryCount)
     
     
