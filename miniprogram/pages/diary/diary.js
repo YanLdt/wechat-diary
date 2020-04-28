@@ -137,6 +137,7 @@ Page({
         // console.log(diaryList[index].content.ops[0])
         //日记信息数组
         var diary = [{
+          id: diaryList[index]._id,
           userPicUrl: diaryList[index].userPicUrl,
           content: diaryList[index].content.ops[0].insert,
           editTime: diaryList[index].editTime

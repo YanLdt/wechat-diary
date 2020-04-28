@@ -42,11 +42,11 @@ Page({
       }, duration)
 
     })
-
+    // console.log(this.data.id)
     const db = wx.cloud.database()
     db.collection("diary").doc(this.data.id).get({
       success:function(res){
-        // console.log(res.data.content.ops)
+        // console.log(res.data.content.ops)  
         that.editorCtx.setContents({
           delta: res.data.content.ops
         })}
