@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    console.log(this.getUserPicUrl(this._openid))
+    //console.log(this.getUserPicUrl(this._openid))
     var diarys = []
     const db=wx.cloud.database()
     let temp = db.collection("diary").orderBy('editTime', 'desc').get()
@@ -26,7 +26,8 @@ Page({
     Promise.resolve(temp).then(res=>{
 
       var diaryList=res.data
-      console.log(diaryList)
+      //打印日记列表
+      //console.log(diaryList)
       for(var index in diaryList){
         // console.log(diaryList[index].content.ops[0].insert)
         //日记信息数组
@@ -36,7 +37,7 @@ Page({
           content: diaryList[index].content.ops[0].insert,
           editTime: diaryList[index].editTime
         }]
-        console.log(diary)
+        // console.log(diary)
         // that.data.diaries.push(diary)
         // console.log(that.diaries)
         diarys.push(diary)
@@ -46,11 +47,13 @@ Page({
         // diaries.push(diary)
         // console.log(diarys,"diarys"+index)
       }
-      console.log(diarys)
+      //打印日记
+      //console.log(diarys)
       that.setData({
         diaries: diarys
       })
-      console.log(that.data.diaries)
+      //打印日记
+      //console.log(that.data.diaries)
     })
 
     wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
@@ -133,7 +136,7 @@ Page({
       var diaryList = res.data
       console.log(diaryList)
       for (var index in diaryList) {
-        console.log("123221221212222222222222222222222222")
+        // console.log("123221221212222222222222222222222222")
         // console.log(diaryList[index].content.ops[0])
         //日记信息数组
         var diary = [{

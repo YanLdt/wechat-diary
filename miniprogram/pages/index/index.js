@@ -102,7 +102,8 @@ Page({
       }
     }).then(res => {
       this.openid = res.result.openid
-      console.log(this.openid)
+      //用户openid
+      //console.log(this.openid)
       if (this.openid == "oAXdX4znu0lp7mTtDdw3YNTBagJk" || this.openid == "oAXdX48Quv5frXY62oA5MDk6PGrw") {
         this.setData({
           hidden: false

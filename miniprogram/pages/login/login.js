@@ -19,7 +19,8 @@ Page({
   onGotUserInfo: function (event) {
     wx.vibrateShort();
     const db = wx.cloud.database()
-    console.log(event.detail)
+    //获取用户信息
+    //console.log(event.detail)
 
 
 
@@ -38,9 +39,10 @@ Page({
         _openid: this.openid
       }).get({
         success: function (res) {
-          console.log("success")
-          console.log(res.data)
-          console.log(event.detail.userInfo)
+          //打印用户信息
+          //console.log("success")
+          //console.log(res.data)
+          //console.log(event.detail.userInfo)
           if (res.leng.length == 0) {
             db.collection("user").add({
               data: {
