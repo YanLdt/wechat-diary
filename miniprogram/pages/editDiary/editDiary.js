@@ -178,7 +178,7 @@ Page({
     var that = this
     const db = wx.cloud.database()
 
-    console.log(this.data.openid, "2222222222222222222222222222222")
+    //console.log(this.data.openid, "2222222222222222222222222222222")
     that.editorCtx.getContents({
       success: function (res) {
         var content = {
@@ -187,12 +187,14 @@ Page({
           text: res.text,
           delta: res.delta
         }
-        console.log(content)
+        console.log(content.html)
+        console.log(content.delta)
         //上传日记并加上时间
         db.collection("diary").add({
           data: {
             editTime: content.time,
-            content: content.delta
+            content: content.delta,
+            html: content.html
           },
           success(res) {
             var id = res._id
@@ -219,9 +221,9 @@ Page({
               //把用户头像信息写入日记集合
               var user = res.data[0]
               let tmpArr = user.diaryArr;
-              console.log(tmpArr)
+              //console.log(tmpArr)
               tmpArr.push(diaryid)
-              console.log(tmpArr,"after")
+              //console.log(tmpArr,"after")
               db.collection("user").doc(user['_id']).update({
                 data:{
                   diaryArr:tmpArr

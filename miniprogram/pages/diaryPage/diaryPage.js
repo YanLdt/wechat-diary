@@ -10,6 +10,7 @@ Page({
     keyboardHeight: 0,
     isIOS: false,
     delta:{},
+    html:{},
     id:""
   },
   readOnlyChange() {
@@ -46,9 +47,11 @@ Page({
     const db = wx.cloud.database()
     db.collection("diary").doc(this.data.id).get({
       success:function(res){
-        // console.log(res.data.content.ops)  
+        //日记的html格式文本
+        //console.log(res.data.html)  
         that.editorCtx.setContents({
-          delta: res.data.content.ops
+          html: res.data.html
+          //delta: res.data.content.ops
         })}
     })
   },
@@ -175,12 +178,13 @@ Page({
           text: res.text,
           delta: res.delta
         }
-        console.log(content)
+        console.log(content.html)
 
         console.log(11111111111111)
         db.collection("diary").doc(that.data.id).update({
           data: {
-            editTime: content.time,
+            //editTime: content.time,
+            html: content.html,
             content: content.delta
           }
         })
